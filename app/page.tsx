@@ -1,10 +1,11 @@
 'use client'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import Navbar from './components/Navbar'
+import { PROGRAM, PAKET_PRIVAT, rupiah, hargaPaket, type Program } from './data/program'
 
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State untuk Mobile Menu
 
   const daftarTutor = [
     { foto: "/tutors/tutor1.jpg", nama: "Kak Akmal", kampus: "Teknik Perminyakan ITB 2024", bidang: "Kimia & Fisika" },
@@ -38,52 +39,7 @@ export default function Home() {
   return (
     <div className="bg-white min-h-screen selection:bg-blue-100 text-slate-900 scroll-smooth overflow-x-hidden">
       
-      {/* 1. NAVIGATION (Optimized with Mobile Menu) */}
-      <nav className="flex justify-between items-center px-6 py-4 bg-white/90 backdrop-blur-md sticky top-0 z-[100] shadow-sm border-b border-slate-100">
-        <div className="flex items-center space-x-3">
-          <img src="/logo-gc.png" alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
-          <a href="/" className="text-xl md:text-2xl font-bold tracking-tight text-[#2F80ED]">
-            Ganesha<span className="text-slate-800">Cendekia</span>
-          </a> 
-        </div>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
-          <a href="/" className="hover:text-[#2F80ED] transition">Beranda</a>
-          <a href="/tentang" className="hover:text-[#2F80ED] transition">Tentang Kami</a>
-          <a href="#program" className="hover:text-[#2F80ED] transition">Program</a>
-          <a href="#tutors" className="hover:text-[#2F80ED] transition">Tutor</a>
-          <a href="#testimoni" className="hover:text-[#2F80ED] transition">Testimoni</a>
-          <a href="https://wa.me/6281221595529" target="_blank" className="bg-[#2F80ED] text-white px-7 py-2.5 rounded-full shadow-lg hover:bg-blue-700 transition-all active:scale-95 text-center">
-            Daftar Sekarang
-          </a>
-        </div>
-
-        {/* Mobile Toggle Button */}
-        <button 
-          className="md:hidden text-[#2F80ED] text-2xl focus:outline-none"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? '✕' : '☰'}
-        </button>
-
-        {/* Mobile Dropdown Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 right-0 bg-white shadow-xl p-6 flex flex-col space-y-5 md:hidden border-t"
-            >
-              <a href="/" className="font-semibold text-slate-700" onClick={() => setIsMenuOpen(false)}>Beranda</a>
-              <a href="/tentang" className="font-semibold text-slate-700" onClick={() => setIsMenuOpen(false)}>Tentang Kami</a>
-              <a href="#program" className="font-semibold text-slate-700" onClick={() => setIsMenuOpen(false)}>Program</a>
-              <a href="/daftar" className="bg-[#2F80ED] text-white px-6 py-4 rounded-2xl text-center font-bold" onClick={() => setIsMenuOpen(false)}>Daftar Sekarang</a>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      <Navbar />
 
       <main>
         {/* 2. HERO SECTION (Responsive Spacing & Typography) */}
@@ -102,7 +58,7 @@ export default function Home() {
                 Didesain khusus oleh alumni <strong>ITB {"&"} MAN IC Serpong</strong> untuk membantu siswa meraih sekolah dan kampus impian.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a href="https://wa.me/6281221595529" target="_blank" className="bg-[#2F80ED] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition shadow-xl w-full sm:w-auto">Mulai Belajar Yuk! 🚀</a>
+                <a href="/daftar" className="bg-[#2F80ED] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition shadow-xl w-full sm:w-auto">Mulai Belajar Yuk! 🚀</a>
                 <a href="#program" className="bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition w-full sm:w-auto">Lihat Program</a>
               </div>
             </div>
@@ -119,41 +75,18 @@ export default function Home() {
             <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4">Program Belajar Unggulan 🏆</h2>
             <div className="w-20 h-1.5 bg-[#2F80ED] mx-auto rounded-full mb-12 md:mb-16"></div>
             
+            <p className="text-slate-600 max-w-2xl mx-auto -mt-6 mb-12 text-sm md:text-base">
+              Tarif dibuat terjangkau supaya siapa pun bisa belajar dari mana saja. Sebagian besar biaya sesi langsung diterima tutor mahasiswa kami.
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <ProgramCard 
-                icon="🏠" 
-                title="Bimbel Privat" 
-                desc="Belajar eksklusif bareng tutor alumni ITB/UI/UNPAD." 
-                price={"SMP: Rp135.000\nSMA: Rp155.000"} 
-                unit="/ sesi" 
-                details={["90 Menit", "Online (Google Meet)", "Bebas Konsultasi PR"]} 
-              />
-              <ProgramCard 
-                icon="🤝" 
-                title="Bimbel Kelompok" 
-                desc="Belajar bertiga jadi lebih seru dan jauh lebih hemat!" 
-                oldPrice="Rp450.000"
-                price="Rp270.000" 
-                unit="/ kelompok" 
-                details={["90 Menit", "2-3 Siswa", "Diskusi Aktif"]} 
-              />
-              <ProgramCard 
-                icon="🏅" 
-                title="Pembinaan OSN" 
-                desc="Persiapan kompetisi sains dengan materi level olimpiade." 
-                price="Rp250.000" 
-                unit="/ sesi" 
-                details={["120 Menit", "Tutor Medalis KSN", "Problem Solving"]} 
-              />
-              <ProgramCard 
-                icon="✈️" 
-                title="Persiapan IELTS" 
-                desc="Strategi jitu raih band score tinggi untuk luar negeri." 
-                price="Rp225.000" 
-                unit="/ sesi" 
-                details={["Listening & Reading", "Writing & Speaking", "Mock Test Berkala"]} 
-              />
+              {PROGRAM.map((p) => (
+                <ProgramCard key={p.slug} program={p} />
+              ))}
             </div>
+            <p className="text-xs md:text-sm text-slate-500 mt-8">
+              💡 Paket hemat privat: bayar {PAKET_PRIVAT.jumlahSesi} sesi di muka, hemat {PAKET_PRIVAT.diskonPersen}%
+              {" "}({PROGRAM[0].tarif.map((t) => `${t.label} ${rupiah(hargaPaket(t.harga))}`).join(", ")}). Sekolah yang ingin bermitra? <a href="/daftar?program=mitra" className="text-[#2F80ED] font-semibold underline">Hubungi kami</a>.
+            </p>
           </div>
         </section>
 
@@ -247,15 +180,16 @@ export default function Home() {
 }
 
 // --- SUB-COMPONENTS (Kept your logic but optimized for Mobile) ---
-function ProgramCard({ icon, title, desc, price, unit, details, oldPrice }: any) {
+function ProgramCard({ program }: { program: Program }) {
+  const { icon, judul, deskripsi, satuan, tarif, detail, hargaCoret, slug } = program
   return (
     <div className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl transition-all group flex flex-col items-center text-center h-full">
       <div className="text-4xl md:text-5xl mb-6 group-hover:scale-110 transition duration-300">{icon}</div>
-      <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-2">{title}</h4>
-      <p className="text-xs md:text-sm text-slate-600 mb-6 flex-grow">{desc}</p>
-      
+      <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-2">{judul}</h4>
+      <p className="text-xs md:text-sm text-slate-600 mb-6 flex-grow">{deskripsi}</p>
+
       <div className="space-y-2 mb-8">
-        {details.map((item: string, index: number) => (
+        {detail.map((item, index) => (
           <div key={index} className="flex items-center justify-center text-[10px] md:text-xs text-slate-500">
             <span className="text-[#2F80ED] mr-2">✓</span> {item}
           </div>
@@ -263,12 +197,17 @@ function ProgramCard({ icon, title, desc, price, unit, details, oldPrice }: any)
       </div>
 
       <div className="mt-auto pt-6 border-t border-slate-50 w-full">
-        {oldPrice && <span className="text-[10px] md:text-xs text-slate-400 line-through block mb-1">{oldPrice}</span>}
-        <div className="flex flex-col items-center">
-          <span className="text-base md:text-lg font-black text-[#2F80ED] whitespace-pre-line leading-tight">{price}</span>
-          <span className="text-[10px] text-slate-400 mt-1">{unit}</span>
+        {hargaCoret && <span className="text-[10px] md:text-xs text-slate-400 line-through block mb-1">{hargaCoret}</span>}
+        <div className="flex flex-col items-center gap-1">
+          {tarif.map((t) => (
+            <div key={t.label} className="flex items-baseline gap-2">
+              {tarif.length > 1 && <span className="text-xs text-slate-500">{t.label}</span>}
+              <span className="text-base md:text-lg font-black text-[#2F80ED] leading-tight">{rupiah(t.harga)}</span>
+            </div>
+          ))}
+          <span className="text-[10px] text-slate-400 mt-1">{satuan}</span>
         </div>
-        <button className="w-full mt-4 bg-[#2F80ED] text-white py-3 rounded-xl text-xs md:text-sm font-bold hover:bg-blue-700 transition">Daftar Sekarang</button>
+        <a href={`/daftar?program=${slug}`} className="block w-full mt-4 bg-[#2F80ED] text-white py-3 rounded-xl text-xs md:text-sm font-bold hover:bg-blue-700 transition">Daftar Sekarang</a>
       </div>
     </div>
   )

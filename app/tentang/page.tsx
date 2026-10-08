@@ -1,57 +1,12 @@
 'use client'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
+import Navbar from '../components/Navbar'
 
 export default function TentangKami() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <div className="bg-white min-h-screen selection:bg-blue-100 text-slate-900 scroll-smooth overflow-x-hidden">
       
-      {/* 1. NAVIGATION (Sama persis dengan Home) */}
-      <nav className="flex justify-between items-center px-6 py-4 bg-white/90 backdrop-blur-md sticky top-0 z-[100] shadow-sm border-b border-slate-100">
-        <div className="flex items-center space-x-3">
-          <img src="/logo-gc.png" alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
-          <a href="/" className="text-xl md:text-2xl font-bold tracking-tight text-[#2F80ED]">
-            Ganesha<span className="text-slate-800">Cendekia</span>
-          </a> 
-        </div>
-
-        {/* Desktop Menu - Link diarahkan ke ID di Home menggunakan /#id */}
-        <div className="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
-          <a href="/" className="hover:text-[#2F80ED] transition">Beranda</a>
-          <a href="/#program" className="hover:text-[#2F80ED] transition">Program</a>
-          <a href="/#tutors" className="hover:text-[#2F80ED] transition">Tutor</a>
-          <a href="/daftar" className="bg-[#2F80ED] text-white px-7 py-2.5 rounded-full shadow-lg hover:bg-blue-700 transition-all active:scale-95 text-center">
-            Daftar Sekarang
-          </a>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button 
-          className="md:hidden text-[#2F80ED] text-2xl focus:outline-none"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? '✕' : '☰'}
-        </button>
-
-        {/* Mobile Dropdown */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 right-0 bg-white shadow-xl p-6 flex flex-col space-y-5 md:hidden border-t"
-            >
-              <a href="/" className="font-semibold text-slate-700" onClick={() => setIsMenuOpen(false)}>Beranda</a>
-              <a href="/#program" className="font-semibold text-slate-700" onClick={() => setIsMenuOpen(false)}>Program</a>
-              <a href="/#tutors" className="font-semibold text-slate-700" onClick={() => setIsMenuOpen(false)}>Tutor</a>
-              <a href="/daftar" className="bg-[#2F80ED] text-white px-6 py-4 rounded-2xl text-center font-bold" onClick={() => setIsMenuOpen(false)}>Daftar Sekarang</a>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      <Navbar />
 
       {/* 2. HERO SECTION TENTANG KAMI */}
       <div className="bg-gradient-to-r from-[#2F80ED] to-[#56CCF2] py-16 md:py-24 text-center text-white px-6">
@@ -110,7 +65,6 @@ export default function TentangKami() {
                   src="/logos/aaiibs3.png" 
                   alt="Logo SMAIA 28 IIBS Karanganyar" 
                   className="w-full h-full object-contain"
-                  onError={(e: any) => { e.target.src = 'https://via.placeholder.com/150?text=Logo+SMAIA' }}
                 />
               </div>
               <h3 className="text-lg md:text-xl font-bold text-slate-800 leading-tight">
