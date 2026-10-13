@@ -48,7 +48,7 @@ export const PROGRAM: Program[] = [
     judul: "Pembinaan OSN",
     deskripsi: "Persiapan kompetisi sains dengan materi dan soal level olimpiade.",
     satuan: "/ sesi",
-    tarif: [{ label: "Privat", harga: 175000 }],
+    tarif: [{ label: "Privat", harga: 250000 }],
     detail: ["120 menit", "Tutor medalis KSN", "Problem solving"],
   },
   {
