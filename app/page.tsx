@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useRef } from 'react'
 import Navbar from './components/Navbar'
 import { PROGRAM, PAKET_PRIVAT, rupiah, hargaPaket, type Program } from './data/program'
+import { TESTIMONI, SURVEI, type Testimoni } from './data/testimoni'
 
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -122,11 +123,14 @@ export default function Home() {
         {/* 5. TESTIMONIALS */}
         <section className="bg-white py-16 md:py-24 px-6" id="testimoni">
           <div className="max-w-7xl mx-auto text-center">
-            <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-12 md:mb-16">Apa Kata Mereka? 🌈</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              <TestiCard color="bg-blue-50" name="Budi" kls="Kelas 3 SMA" text="Materi sesulit apapun jadi gampang kalau dijelasin tutor GC!" />
-              <TestiCard color="bg-orange-50" name="Siti" kls="Alumni" text="Alhamdulillah lolos PTN impian berkat bimbingan intensif di sini." />
-              <TestiCard color="bg-green-50" name="Andi" kls="Kelas 1 SMA" text="Tutornya asik, berasa belajar bareng kakak sendiri!" />
+            <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Apa Kata Mereka? 🌈</h3>
+            <p className="text-slate-500 text-sm md:text-base mb-12 md:mb-16">
+              Rata-rata kepuasan <strong className="text-slate-800">{SURVEI.rataRata.toLocaleString('id-ID')}/5</strong> dari survei siswa {SURVEI.periode}
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {TESTIMONI.map((t) => (
+                <TestiCard key={t.nama} t={t} />
+              ))}
             </div>
           </div>
         </section>
@@ -213,16 +217,25 @@ function ProgramCard({ program }: { program: Program }) {
   )
 }
 
-function TestiCard({ color, name, kls, text }: any) {
+function TestiCard({ t }: { t: Testimoni }) {
   return (
-    <div className={`${color} p-6 md:p-8 rounded-3xl text-left border border-black/5 hover:border-black/10 transition-colors h-full flex flex-col justify-between shadow-sm`}>
+    <div className={`${t.warna} p-6 md:p-8 rounded-3xl text-left border border-black/5 hover:border-black/10 transition-colors h-full flex flex-col justify-between shadow-sm`}>
       <div>
-        <div className="text-blue-200 text-4xl md:text-5xl font-serif leading-none mb-2">“</div>
-        <p className="text-slate-700 italic text-xs md:text-sm leading-relaxed mb-6">{text}</p>
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <span className="text-amber-400 text-base tracking-wider" aria-label={`Rating ${t.rating} dari 5`}>
+            {'★'.repeat(t.rating)}<span className="text-slate-300">{'★'.repeat(5 - t.rating)}</span>
+          </span>
+          {t.sorotan && (
+            <span className="bg-white text-[#2F80ED] text-[10px] md:text-xs font-bold px-3 py-1 rounded-full border border-blue-100">
+              {t.sorotan}
+            </span>
+          )}
+        </div>
+        <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-6">“{t.teks}”</p>
       </div>
       <div>
-        <p className="font-bold text-sm md:text-base text-slate-900">{name}</p>
-        <p className="text-[9px] md:text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-1">{kls}</p>
+        <p className="font-bold text-sm md:text-base text-slate-900">{t.nama}</p>
+        <p className="text-[10px] md:text-xs text-slate-500 font-semibold uppercase tracking-widest mt-1">{t.kelas}</p>
       </div>
     </div>
   )
