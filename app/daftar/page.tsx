@@ -3,7 +3,8 @@ import Navbar from '../components/Navbar'
 import FormDaftar from './FormDaftar'
 
 export const metadata: Metadata = {
-  title: 'Daftar Bimbel | Ganesha Cendekia',
+  title: 'Daftar Bimbel Online',
+  alternates: { canonical: '/daftar' },
   description:
     'Isi formulir singkat untuk mendaftar bimbel online privat, kelompok, OSN, atau IELTS bersama tutor mahasiswa ITB, UI, dan Unpad.',
 }
