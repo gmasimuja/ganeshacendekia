@@ -157,7 +157,7 @@ export default function FormDaftar() {
               </select>
             </Field>
             <Field label="Asal sekolah">
-              <input className={inputCls} value={sekolah} onChange={(e) => setSekolah(e.target.value)} placeholder="cth. SMAN 3 Bandung" />
+              <input className={inputCls} value={sekolah} onChange={(e) => setSekolah(e.target.value)} placeholder="cth. SMAN 1 Surakarta" />
             </Field>
           </div>
 

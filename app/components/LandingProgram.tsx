@@ -2,7 +2,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import FaqList from './FaqList'
 import JsonLd from './JsonLd'
-import { LANDING_LIST, program, schemaLanding, type LandingPage } from '../data/seo'
+import { LANDING_LIST, SITE, program, schemaLanding, type LandingPage } from '../data/seo'
 import { PAKET_PRIVAT, rupiah, hargaPaket } from '../data/program'
 import { TESTIMONI } from '../data/testimoni'
 
@@ -36,6 +36,11 @@ export default function LandingProgram({ page }: { page: LandingPage }) {
               <a href={daftarHref} className="bg-[#2F80ED] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition text-center">Daftar Sekarang</a>
               <a href="https://wa.me/6281221595529" target="_blank" rel="noopener" className="bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition text-center">Konsultasi Gratis via WhatsApp</a>
             </div>
+            <ul className="mt-6 flex flex-wrap gap-2 text-xs md:text-sm font-semibold text-slate-600">
+              {['100% online via Google Meet', `Dikelola dari ${SITE.basis}`, 'Siswa dari seluruh Indonesia'].map((c) => (
+                <li key={c} className="bg-white border border-slate-200 rounded-full px-3 py-1.5">{c}</li>
+              ))}
+            </ul>
           </div>
         </section>
 

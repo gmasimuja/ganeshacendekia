@@ -15,7 +15,7 @@ export function GET() {
 
   const teks = `# ${SITE.nama}
 
-> ${SITE.deskripsi} Sesi berlangsung lewat Google Meet. Berbasis di Bandung, mengajar siswa dari berbagai daerah di Indonesia.
+> ${SITE.deskripsi} Sesi berlangsung lewat Google Meet. Dikelola dari ${SITE.basis} (${SITE.basisResmi}), ${SITE.provinsi}; kelas 100% online sehingga siswa dari seluruh Indonesia bisa ikut.
 
 ## Fakta utama
 

@@ -25,7 +25,7 @@ export default function Footer() {
           <div>
             <h2 className="text-lg font-bold mb-6 text-white">Kontak</h2>
             <div className="space-y-4 text-slate-400 text-sm">
-              <p>Bandung, Indonesia</p>
+              <p>{SITE.lokasiTampil}</p>
               <p>WhatsApp {SITE.teleponTampil}</p>
               <a href={SITE.instagram} target="_blank" rel="noopener" className="inline-block text-[#56CCF2]">@ganeshacendekia.id</a>
               <p><a href="/tentang" className="hover:text-[#56CCF2]">Tentang Kami</a> · <a href="/daftar" className="hover:text-[#56CCF2]">Daftar</a></p>

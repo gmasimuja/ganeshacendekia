@@ -163,7 +163,7 @@ export default function HomeClient({ sebelumFooter }: { sebelumFooter?: React.Re
             <div>
               <h4 className="text-lg font-bold mb-6 text-white">Kontak</h4>
               <div className="space-y-4 text-slate-400 text-sm">
-                <p>📍 Bandung, Indonesia</p>
+                <p>📍 Dikelola dari Solo, kelas online untuk siswa di seluruh Indonesia</p>
                 <p>📱 +62 812 2159 5529</p>
                 <a href="https://instagram.com/ganeshacendekia.id" target="_blank" className="inline-block mt-2 text-[#56CCF2]">@ganeshacendekia.id</a>
               </div>

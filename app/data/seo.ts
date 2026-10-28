@@ -9,6 +9,11 @@ export const SITE = {
   instagram: "https://www.instagram.com/ganeshacendekia.id/",
   telepon: "+62-812-2159-5529",
   teleponTampil: "0812-2159-5529",
+  // Kota tempat GC dikelola. Kelas 100% online, jadi siswa bisa dari mana saja.
+  basis: "Solo",
+  basisResmi: "Surakarta",
+  provinsi: "Jawa Tengah",
+  lokasiTampil: "Dikelola dari Solo, kelas online untuk siswa di seluruh Indonesia",
   deskripsi:
     "Bimbel online untuk siswa SMP dan SMA: les privat, bimbel kelompok, pembinaan OSN, dan persiapan IELTS bersama tutor mahasiswa ITB, UI, dan Unpad, alumni MAN Insan Cendekia.",
 };
@@ -184,7 +189,7 @@ export const LANDING_LIST = Object.values(LANDING);
 export const FAQ_BERANDA: Faq[] = [
   {
     q: "Apa itu Ganesha Cendekia?",
-    a: "Ganesha Cendekia adalah bimbel online untuk siswa SMP dan SMA, dengan program les privat, bimbel kelompok, pembinaan OSN, dan persiapan IELTS. Tutornya mahasiswa ITB, UI, dan Unpad, alumni MAN Insan Cendekia. Berbasis di Bandung dan mengajar siswa dari berbagai daerah lewat Google Meet.",
+    a: "Ganesha Cendekia adalah bimbel online untuk siswa SMP dan SMA, dengan program les privat, bimbel kelompok, pembinaan OSN, dan persiapan IELTS. Tutornya mahasiswa ITB, UI, dan Unpad, alumni MAN Insan Cendekia. Dikelola dari Solo, Jawa Tengah, dan 100% online: siswa dari daerah mana pun bisa ikut lewat Google Meet.",
   },
   {
     q: "Berapa biaya bimbel online di Ganesha Cendekia?",
@@ -244,7 +249,7 @@ export function schemaOrganisasi() {
     description: SITE.deskripsi,
     telephone: SITE.telepon,
     sameAs: [SITE.instagram],
-    address: { "@type": "PostalAddress", addressLocality: "Bandung", addressRegion: "Jawa Barat", addressCountry: "ID" },
+    address: { "@type": "PostalAddress", addressLocality: SITE.basisResmi, addressRegion: SITE.provinsi, addressCountry: "ID" },
     areaServed: { "@type": "Country", name: "Indonesia" },
     contactPoint: { "@type": "ContactPoint", telephone: SITE.telepon, contactType: "customer service", availableLanguage: ["id"] },
     hasOfferCatalog: {
